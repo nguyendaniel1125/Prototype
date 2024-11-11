@@ -1,0 +1,12 @@
+streamlit
+os
+requests
+openai
+beautifulsoup4
+pandas
+opencage
+firebase-admin
+folium
+streamlit-folium
+pillow
+pypdf2
