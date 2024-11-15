@@ -168,6 +168,20 @@ def analyze_flood_image(image_bytes):
 if option == "Main Page":
     st.markdown("<h1 style='text-align: center; color: #1f77b4;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
+    
+    # Section for the main features of the app
+    st.markdown("""
+        <h2 style='color: #1f77b4;'>FEATURES OF THE APP</h2>
+        <ul style="color: #FFFFFF; font-weight: bold;">
+            <li><b>Flood Information Extractor:</b> This feature allows you to extract key information about flood-related events from websites. You can input a URL and an optional keyword to get summarized flood-related content and key points. You can even ask questions about the extracted content to gain more insights.</li>
+            <li><b>Flood Risk Mapping:</b> View flood-prone areas on an interactive map. This feature helps you identify the risk levels in different regions, making it easier to prepare for potential flood events.</li>
+            <li><b>Flood Reporting:</b> Allows users to report flood incidents in real-time. By providing details such as the location and severity, you can help authorities track and respond to flood situations more effectively.</li>
+            <li><b>Preparedness Checklist:</b> A comprehensive checklist to ensure you have the necessary supplies and plans in place for flood emergencies. This feature helps you stay organized and ready when disaster strikes.</li>
+        </ul>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<p style='color: #FFFFFF;'>Explore each feature to stay informed and prepared for any flood-related situation. Stay safe!</p>", unsafe_allow_html=True)
+
 elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
 
