@@ -226,7 +226,7 @@ elif option == "Flood Preparedness Advisor":
         st.subheader("Flood Preparedness Advisor")
     
     # Path to the PDF file
-    pdf_path = r"E:\VSC-Python\Get Flood Ready Essential Tips _ Santa Clara Valley Water.pdf"
+    pdf_path = r"Valley Water Dataset.pdf"
     
     # Extract text from the PDF
     pdf_content = extract_text_from_pdf(pdf_path)
