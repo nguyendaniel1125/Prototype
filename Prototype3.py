@@ -13,6 +13,20 @@ from streamlit_folium import st_folium
 from PIL import Image
 from PyPDF2 import PdfReader
 
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #f0f2f6;
+    }
+    .stSidebar {
+        background-color: #4caf50;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Initialize Firebase app
 cred = credentials.Certificate("floodguard-ai-firebase-adminsdk-1gehw-297a26cec3.json")  # Update with your Firebase credentials path
 if not firebase_admin._apps:
