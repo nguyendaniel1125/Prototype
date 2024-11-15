@@ -179,7 +179,7 @@ if option == "Main Page":
     
     # Cards for each feature
     st.markdown("""
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
             <div style="background-color: #fff; color: #333; padding: 20px; width: 45%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
                 <h3 style="color: #1f77b4; font-weight: bold;">Flood Information Extractor</h3>
                 <p><b>Extract flood-related information</b> from websites. Enter a URL and an optional keyword to get summaries, key points, and ask questions about the content.</p>
@@ -208,6 +208,7 @@ if option == "Main Page":
             <p style="color: #FFFFFF; font-family: Arial, sans-serif; font-size: 18px;">Explore each feature to stay informed, prepared, and safe during flood emergencies. Click on a feature to get started!</p>
         </div>
     """, unsafe_allow_html=True)
+
 
 
 
