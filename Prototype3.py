@@ -166,21 +166,49 @@ def analyze_flood_image(image_bytes):
 
 # Handle different options
 if option == "Main Page":
-    st.markdown("<h1 style='text-align: center; color: #1f77b4;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
-    
-    # Section for the main features of the app
+    # Title of the page
     st.markdown("""
-        <h2 style='color: #1f77b4;'>FEATURES OF THE APP</h2>
-        <ul style="color: #FFFFFF; font-weight: bold;">
-            <li><b>Flood Information Extractor:</b> This feature allows you to extract key information about flood-related events from websites. You can input a URL and an optional keyword to get summarized flood-related content and key points. You can even ask questions about the extracted content to gain more insights.</li>
-            <li><b>Flood Risk Mapping:</b> View flood-prone areas on an interactive map. This feature helps you identify the risk levels in different regions, making it easier to prepare for potential flood events.</li>
-            <li><b>Flood Reporting:</b> Allows users to report flood incidents in real-time. By providing details such as the location and severity, you can help authorities track and respond to flood situations more effectively.</li>
-            <li><b>Preparedness Checklist:</b> A comprehensive checklist to ensure you have the necessary supplies and plans in place for flood emergencies. This feature helps you stay organized and ready when disaster strikes.</li>
-        </ul>
+        <h1 style='text-align: center; color: #1f77b4; font-family: Arial, sans-serif;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>
+        <p style='text-align: center; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 18px;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>
     """, unsafe_allow_html=True)
     
-    st.markdown("<p style='color: #FFFFFF;'>Explore each feature to stay informed and prepared for any flood-related situation. Stay safe!</p>", unsafe_allow_html=True)
+    # Description of the features
+    st.markdown("""
+        <h2 style='color: #1f77b4; font-family: Arial, sans-serif;'>Explore the Key Features:</h2>
+    """, unsafe_allow_html=True)
+    
+    # Cards for each feature
+    st.markdown("""
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div style="background-color: #fff; color: #333; padding: 20px; width: 45%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+                <h3 style="color: #1f77b4; font-weight: bold;">Flood Information Extractor</h3>
+                <p><b>Extract flood-related information</b> from websites. Enter a URL and an optional keyword to get summaries, key points, and ask questions about the content.</p>
+            </div>
+            
+            <div style="background-color: #fff; color: #333; padding: 20px; width: 45%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+                <h3 style="color: #1f77b4; font-weight: bold;">Flood Risk Mapping</h3>
+                <p><b>Interactive flood map</b> showing flood-prone areas. Use this feature to identify areas with high risk and prepare accordingly.</p>
+            </div>
+            
+            <div style="background-color: #fff; color: #333; padding: 20px; width: 45%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+                <h3 style="color: #1f77b4; font-weight: bold;">Flood Reporting</h3>
+                <p><b>Real-time flood reporting</b> allows you to report incidents as they happen. Provide details such as location and severity to assist authorities in responding quickly.</p>
+            </div>
+            
+            <div style="background-color: #fff; color: #333; padding: 20px; width: 45%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+                <h3 style="color: #1f77b4; font-weight: bold;">Preparedness Checklist</h3>
+                <p><b>Comprehensive checklist</b> to ensure you're ready for a flood. This feature helps you track your supplies and plan your evacuation strategy.</p>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # Call to action (CTA)
+    st.markdown("""
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: #FFFFFF; font-family: Arial, sans-serif; font-size: 18px;">Explore each feature to stay informed, prepared, and safe during flood emergencies. Click on a feature to get started!</p>
+        </div>
+    """, unsafe_allow_html=True)
+
 
 elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
