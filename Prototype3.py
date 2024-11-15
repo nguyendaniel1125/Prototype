@@ -14,7 +14,7 @@ from PIL import Image
 from PyPDF2 import PdfReader
 
 # Initialize Firebase app
-cred = credentials.Certificate("./floodguard-ai-firebase-adminsdk-1gehw-297a26cec3.json")  # Update with your Firebase credentials path
+cred = credentials.Certificate("floodguard-ai-firebase-adminsdk-1gehw-297a26cec3.json")  # Update with your Firebase credentials path
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
 
