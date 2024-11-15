@@ -185,74 +185,13 @@ elif option == "Flood Information Extractor":
     if 'answer' not in st.session_state:
         st.session_state.answer = ''
 
-    # Custom CSS for dark background with bold text (no uppercase)
-    st.markdown("""
-        <style>
-            /* Make all text bold */
-            body, h1, h2, h3, h4, h5, h6, label, .stTextInput>div>div>input, .stButton>button, .stSlider>div>div {
-                font-weight: bold;
-            }
-
-            /* Style labels above inputs */
-            .stTextInput>label {
-                color: #1f77b4;
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
-            
-            /* Style input fields */
-            .stTextInput>div>div>input {
-                background-color: #333;
-                color: white;
-                border: 1px solid #1f77b4;
-                padding: 10px;
-                margin-bottom: 15px;
-                border-radius: 5px;
-            }
-            
-            /* Style buttons */
-            .stButton>button {
-                background-color: #1f77b4;
-                color: white;
-                border-radius: 8px;
-                font-weight: bold;
-                padding: 10px;
-                margin-top: 10px;
-            }
-            
-            /* Style sliders */
-            .stSlider>div>div {
-                color: white;
-                margin-bottom: 10px;
-            }
-
-            /* Style headers */
-            h1, h2, h3, h4, h5, h6 {
-                color: white;
-            }
-        </style>
-        """, unsafe_allow_html=True)
-
     # User inputs for URL, keyword, and maximum paragraphs to display
-    st.text_input(
-        "ENTER THE URL OF THE FLOOD-RELATED WEBSITE:", 
-        st.session_state.url_input, 
-        key="url_input"
-    )
-    st.text_input(
-        "OPTIONAL: SPECIFY A FLOOD-RELATED TERM:", 
-        st.session_state.keyword_input, 
-        key="keyword_input"
-    )
-    
-    max_paragraphs = st.slider(
-        "NUMBER OF KEY POINTS TO DISPLAY:", 
-        1, 20, 5, 
-        help="ADJUST TO SEE MORE OR FEWER KEY POINTS."
-    )
+    st.session_state.url_input = st.text_input("Enter the URL of the flood-related website:", st.session_state.url_input)
+    st.session_state.keyword_input = st.text_input("Optional: Specify a flood-related term:", st.session_state.keyword_input)
+    max_paragraphs = st.slider("Number of key points to display:", 1, 20, 5)
 
     # Button to extract flood information
-    if st.button("EXTRACT FLOOD INFO"):
+    if st.button("Extract Flood Info"):
         if st.session_state.url_input:
             # Extract title, key points, and summary from the URL
             title, st.session_state.key_points, st.session_state.summary = extract_flood_info_from_url(
@@ -260,33 +199,28 @@ elif option == "Flood Information Extractor":
                 keyword=st.session_state.keyword_input, 
                 max_paragraphs=max_paragraphs
             )
-
+            
             # Display title and summary
-            st.write(f"**PAGE TITLE:** {title}")
-            st.write("### SUMMARY OF FLOOD INFORMATION:")
-            st.write(st.session_state.summary if st.session_state.summary else "NO SUMMARY AVAILABLE.")
+            st.write(f"**Page Title:** {title}")
+            st.write("### Summary of Flood Information:")
+            st.write(st.session_state.summary if st.session_state.summary else "No summary available.")
             
             # Display key flood information as bullet points
-            st.write("### KEY FLOOD INFORMATION:")
+            st.write("### Key Flood Information:")
             for i, point in enumerate(st.session_state.key_points, 1):
                 st.write(f"{i}. {point}")
 
     # Input for user question
-    st.text_input(
-        "ASK A SPECIFIC QUESTION ABOUT THIS PAGE'S CONTENT:", 
-        st.session_state.question_input,
-        key="question_input"
-    )
+    st.session_state.question_input = st.text_input("Ask a specific question about this page's content:", st.session_state.question_input)
     
     # Button to generate an answer based on the question input
-    if st.button("GET ANSWER") and st.session_state.question_input:
+    if st.button("Get Answer") and st.session_state.question_input:
         st.session_state.answer = answer_question_about_content(
             f"{st.session_state.summary} {' '.join(st.session_state.key_points)}", 
             st.session_state.question_input
         )
-        st.write("### ANSWER:")
+        st.write("### Answer:")
         st.write(st.session_state.answer)
-
 
 
 
