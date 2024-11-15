@@ -167,10 +167,10 @@ def analyze_flood_image(image_bytes):
 # Handle different options
 if option == "Main Page":
     st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Flood Preparedness & Reporting System</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #555;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
-
+    st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
 elif option == "Flood Information Extractor":
-    st.subheader("Flood Information Extractor")
+    # Header for Flood Information Extractor with custom color
+    st.markdown("<h2 style='text-align: center; color: #1f77b4;'>Flood Information Extractor</h2>", unsafe_allow_html=True)
 
     # Initialize session state variables if they don’t exist
     if 'url_input' not in st.session_state:
@@ -186,13 +186,18 @@ elif option == "Flood Information Extractor":
     if 'answer' not in st.session_state:
         st.session_state.answer = ''
 
-    # User inputs for URL, keyword, and maximum paragraphs to display
-    st.session_state.url_input = st.text_input("Enter the URL of the flood-related website:", st.session_state.url_input)
-    st.session_state.keyword_input = st.text_input("Optional: Specify a flood-related term:", st.session_state.keyword_input)
-    max_paragraphs = st.slider("Number of key points to display:", 1, 20, 5)
+    # User inputs for URL, keyword, and maximum paragraphs to display with custom color
+    st.markdown("<p style='font-size: 18px; color: #1f77b4;'>Enter the URL of the flood-related website:</p>", unsafe_allow_html=True)
+    st.session_state.url_input = st.text_input("", st.session_state.url_input, placeholder="e.g., https://www.floodinfo.com")
 
-    # Button to extract flood information
-    if st.button("Extract Flood Info"):
+    st.markdown("<p style='font-size: 18px; color: #1f77b4;'>Optional: Specify a flood-related term:</p>", unsafe_allow_html=True)
+    st.session_state.keyword_input = st.text_input("", st.session_state.keyword_input, placeholder="e.g., flood, warning, damage")
+
+    st.markdown("<p style='font-size: 18px; color: #1f77b4;'>Number of key points to display:</p>", unsafe_allow_html=True)
+    max_paragraphs = st.slider("", min_value=1, max_value=20, value=5, step=1)
+
+    # Button to extract flood information with custom color
+    if st.button("🔍 Extract Flood Info"):
         if st.session_state.url_input:
             # Extract title, key points, and summary from the URL
             title, st.session_state.key_points, st.session_state.summary = extract_flood_info_from_url(
@@ -201,27 +206,29 @@ elif option == "Flood Information Extractor":
                 max_paragraphs=max_paragraphs
             )
             
-            # Display title and summary
-            st.write(f"**Page Title:** {title}")
-            st.write("### Summary of Flood Information:")
+            # Display title and summary with custom color
+            st.markdown(f"<h3 style='color: #1f77b4;'>Page Title: {title}</h3>", unsafe_allow_html=True)
+            st.markdown("<h4 style='color: #1f77b4;'>Summary of Flood Information:</h4>", unsafe_allow_html=True)
             st.write(st.session_state.summary if st.session_state.summary else "No summary available.")
             
-            # Display key flood information as bullet points
-            st.write("### Key Flood Information:")
+            # Display key flood information as bullet points with custom color
+            st.markdown("<h4 style='color: #1f77b4;'>Key Flood Information:</h4>", unsafe_allow_html=True)
             for i, point in enumerate(st.session_state.key_points, 1):
                 st.write(f"{i}. {point}")
 
-    # Input for user question
-    st.session_state.question_input = st.text_input("Ask a specific question about this page's content:", st.session_state.question_input)
-    
-    # Button to generate an answer based on the question input
-    if st.button("Get Answer") and st.session_state.question_input:
+    # Input for user question with custom color
+    st.markdown("<p style='font-size: 18px; color: #1f77b4;'>Ask a specific question about this page's content:</p>", unsafe_allow_html=True)
+    st.session_state.question_input = st.text_input("", st.session_state.question_input, placeholder="e.g., What is the flood risk in my area?")
+
+    # Button to generate an answer based on the question input with custom color
+    if st.button("💬 Get Answer") and st.session_state.question_input:
         st.session_state.answer = answer_question_about_content(
             f"{st.session_state.summary} {' '.join(st.session_state.key_points)}", 
             st.session_state.question_input
         )
-        st.write("### Answer:")
+        st.markdown("<h4 style='color: #1f77b4;'>Answer:</h4>", unsafe_allow_html=True)
         st.write(st.session_state.answer)
+
         
 # In the Flood Preparedness Advisor section of your Streamlit app:
 elif option == "Flood Preparedness Advisor":
