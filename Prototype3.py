@@ -191,20 +191,27 @@ elif option == "Flood Information Extractor":
             .stTextInput>label {
                 color: #1f77b4;
                 font-weight: bold;
+                margin-bottom: 5px;
             }
             .stTextInput>div>div>input {
                 background-color: #333;
                 color: white;
                 border: 1px solid #1f77b4;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 5px;
             }
             .stButton>button {
                 background-color: #1f77b4;
                 color: white;
                 border-radius: 8px;
                 font-weight: bold;
+                padding: 10px;
+                margin-top: 10px;
             }
             .stSlider>div>div {
                 color: white;
+                margin-bottom: 10px;
             }
             h1, h2, h3, h4, h5, h6 {
                 color: white;
@@ -216,22 +223,21 @@ elif option == "Flood Information Extractor":
         """, unsafe_allow_html=True)
 
     # User inputs for URL, keyword, and maximum paragraphs to display
-    st.session_state.url_input = st.text_input(
+    st.text_input(
         "Enter the URL of the flood-related website:", 
         st.session_state.url_input, 
-        label_visibility="hidden"
+        key="url_input"
     )
-    st.session_state.keyword_input = st.text_input(
+    st.text_input(
         "Optional: Specify a flood-related term:", 
         st.session_state.keyword_input, 
-        label_visibility="hidden"
+        key="keyword_input"
     )
     
     max_paragraphs = st.slider(
         "Number of key points to display:", 
         1, 20, 5, 
-        help="Adjust to see more or fewer key points.", 
-        label_visibility="hidden"
+        help="Adjust to see more or fewer key points."
     )
 
     # Button to extract flood information
@@ -255,10 +261,10 @@ elif option == "Flood Information Extractor":
                 st.write(f"{i}. {point}")
 
     # Input for user question
-    st.session_state.question_input = st.text_input(
+    st.text_input(
         "Ask a specific question about this page's content:", 
         st.session_state.question_input,
-        label_visibility="hidden"
+        key="question_input"
     )
     
     # Button to generate an answer based on the question input
@@ -269,6 +275,7 @@ elif option == "Flood Information Extractor":
         )
         st.write("### Answer:")
         st.write(st.session_state.answer)
+
 
 
 
