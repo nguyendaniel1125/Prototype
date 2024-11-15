@@ -13,59 +13,7 @@ from streamlit_folium import st_folium
 from PIL import Image
 from PyPDF2 import PdfReader
 
-st.markdown(
-    """
-    <style>
-    /* Main App Background */
-    .stApp {
-        background-color: #e8f4f8; /* Light blue background for a calm, water-related theme */
-        color: #002b36; /* Dark gray text for readability */
-    }
 
-    /* Sidebar Styling */
-    .stSidebar {
-        background-color: #004d61; /* Dark teal sidebar for contrast */
-        color: #ffffff; /* White text for visibility */
-    }
-
-    .stSidebar .css-17eq0hr { /* Sidebar Header */
-        font-size: 20px; /* Larger font size for prominence */
-        font-weight: bold; 
-        color: #ffffff;
-    }
-
-    .stSidebar .css-1d391kg { /* Sidebar Elements */
-        color: #d9f0ff; /* Light text color for better contrast */
-    }
-
-    /* Header Style */
-    h1, h2, h3, h4, h5, h6 {
-        color: #004d61; /* Matching header colors with sidebar */
-    }
-
-    /* Button Styling */
-    .stButton>button {
-        background-color: #004d61; /* Dark teal button background */
-        color: white; /* White button text */
-        border: none;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    .stButton>button:hover {
-        background-color: #00798c; /* Slightly lighter teal on hover */
-    }
-
-    /* Footer Style (if needed) */
-    footer {
-        background-color: #002b36; /* Dark gray footer */
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 
 # Initialize Firebase app
