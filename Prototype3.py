@@ -244,10 +244,15 @@ elif option == "Flood Information Extractor":
 
     # User inputs for URL, keyword, and maximum paragraphs to display with modern design
     st.markdown("<p>Enter the URL of the flood-related website:</p>", unsafe_allow_html=True)
-    st.session_state.url_input = st.text_input("", st.session_state.url_input, placeholder="e.g., https://www.floodinfo.com", key="url_input")
+    # Update the session state before rendering the widget
+    url_input = st.text_input("", st.session_state.url_input, placeholder="e.g., https://www.floodinfo.com", key="url_input")
+    if url_input != st.session_state.url_input:
+        st.session_state.url_input = url_input
 
     st.markdown("<p>Optional: Specify a flood-related term:</p>", unsafe_allow_html=True)
-    st.session_state.keyword_input = st.text_input("", st.session_state.keyword_input, placeholder="e.g., flood, warning, damage", key="keyword_input")
+    keyword_input = st.text_input("", st.session_state.keyword_input, placeholder="e.g., flood, warning, damage", key="keyword_input")
+    if keyword_input != st.session_state.keyword_input:
+        st.session_state.keyword_input = keyword_input
 
     st.markdown("<p>Number of key points to display:</p>", unsafe_allow_html=True)
     max_paragraphs = st.slider("", min_value=1, max_value=20, value=5, step=1)
@@ -274,7 +279,9 @@ elif option == "Flood Information Extractor":
 
     # Input for user question with modern styling
     st.markdown("<p>Ask a specific question about this page's content:</p>", unsafe_allow_html=True)
-    st.session_state.question_input = st.text_input("", st.session_state.question_input, placeholder="e.g., What is the flood risk in my area?", key="question_input")
+    question_input = st.text_input("", st.session_state.question_input, placeholder="e.g., What is the flood risk in my area?", key="question_input")
+    if question_input != st.session_state.question_input:
+        st.session_state.question_input = question_input
 
     # Button to generate an answer based on the question input with hover effect
     if st.button("💬 Get Answer") and st.session_state.question_input:
@@ -284,6 +291,7 @@ elif option == "Flood Information Extractor":
         )
         st.markdown("<h4>Answer:</h4>", unsafe_allow_html=True)
         st.write(st.session_state.answer)
+
 
 
         
