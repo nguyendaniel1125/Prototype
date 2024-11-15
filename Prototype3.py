@@ -185,13 +185,12 @@ elif option == "Flood Information Extractor":
     if 'answer' not in st.session_state:
         st.session_state.answer = ''
 
-    # Custom CSS for dark background with light text
+    # Custom CSS for dark background with bold text (no uppercase)
     st.markdown("""
         <style>
-            /* Make all text bold and uppercase */
+            /* Make all text bold */
             body, h1, h2, h3, h4, h5, h6, label, .stTextInput>div>div>input, .stButton>button, .stSlider>div>div {
                 font-weight: bold;
-                text-transform: uppercase;
             }
 
             /* Style labels above inputs */
