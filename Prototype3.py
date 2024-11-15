@@ -169,64 +169,7 @@ if option == "Main Page":
     st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Flood Preparedness & Reporting System</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
 elif option == "Flood Information Extractor":
-    # Modern header for Flood Information Extractor with custom color
-    st.markdown("""
-        <style>
-            h2 {
-                font-family: 'Roboto', sans-serif;
-                text-align: center;
-                color: #1f77b4;
-                font-size: 36px;
-                margin-bottom: 20px;
-            }
-            p {
-                font-family: 'Arial', sans-serif;
-                font-size: 18px;
-                color: #333333;
-                margin-bottom: 5px;
-            }
-            .input-container {
-                margin-bottom: 10px;
-            }
-            .stTextInput input {
-                border-radius: 8px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                width: 100%;
-                font-size: 16px;
-                box-sizing: border-box;
-                transition: all 0.3s ease;
-            }
-            .stTextInput input:focus {
-                border-color: #1f77b4;
-                outline: none;
-            }
-            .stSlider {
-                font-size: 16px;
-            }
-            .stButton {
-                background-color: #1f77b4;
-                color: white;
-                border-radius: 8px;
-                padding: 10px 20px;
-                font-size: 18px;
-                border: none;
-                transition: background-color 0.3s ease;
-                cursor: pointer;
-            }
-            .stButton:hover {
-                background-color: #155a8a;
-            }
-            h3, h4 {
-                font-family: 'Roboto', sans-serif;
-                color: #1f77b4;
-                font-weight: bold;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # Modern header
-    st.markdown("<h2>Flood Information Extractor</h2>", unsafe_allow_html=True)
+    st.subheader("Flood Information Extractor")
 
     # Initialize session state variables if they don’t exist
     if 'url_input' not in st.session_state:
@@ -242,23 +185,57 @@ elif option == "Flood Information Extractor":
     if 'answer' not in st.session_state:
         st.session_state.answer = ''
 
-    # User inputs for URL, keyword, and maximum paragraphs to display with modern design
-    st.markdown("<p>Enter the URL of the flood-related website:</p>", unsafe_allow_html=True)
-    # Update the session state before rendering the widget
-    url_input = st.text_input("", st.session_state.url_input, placeholder="e.g., https://www.floodinfo.com", key="url_input")
-    if url_input != st.session_state.url_input:
-        st.session_state.url_input = url_input
+    # Custom CSS for dark background with light text
+    st.markdown("""
+        <style>
+            .stTextInput>label {
+                color: #1f77b4;
+                font-weight: bold;
+            }
+            .stTextInput>div>div>input {
+                background-color: #333;
+                color: white;
+                border: 1px solid #1f77b4;
+            }
+            .stButton>button {
+                background-color: #1f77b4;
+                color: white;
+                border-radius: 8px;
+                font-weight: bold;
+            }
+            .stSlider>div>div {
+                color: white;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: white;
+            }
+            .stTextInput>label, .stSlider>div {
+                margin-bottom: 10px;
+            }
+        </style>
+        """, unsafe_allow_html=True)
 
-    st.markdown("<p>Optional: Specify a flood-related term:</p>", unsafe_allow_html=True)
-    keyword_input = st.text_input("", st.session_state.keyword_input, placeholder="e.g., flood, warning, damage", key="keyword_input")
-    if keyword_input != st.session_state.keyword_input:
-        st.session_state.keyword_input = keyword_input
+    # User inputs for URL, keyword, and maximum paragraphs to display
+    st.session_state.url_input = st.text_input(
+        "Enter the URL of the flood-related website:", 
+        st.session_state.url_input, 
+        label_visibility="hidden"
+    )
+    st.session_state.keyword_input = st.text_input(
+        "Optional: Specify a flood-related term:", 
+        st.session_state.keyword_input, 
+        label_visibility="hidden"
+    )
+    
+    max_paragraphs = st.slider(
+        "Number of key points to display:", 
+        1, 20, 5, 
+        help="Adjust to see more or fewer key points.", 
+        label_visibility="hidden"
+    )
 
-    st.markdown("<p>Number of key points to display:</p>", unsafe_allow_html=True)
-    max_paragraphs = st.slider("", min_value=1, max_value=20, value=5, step=1)
-
-    # Button to extract flood information with hover effect
-    if st.button("🔍 Extract Flood Info"):
+    # Button to extract flood information
+    if st.button("Extract Flood Info"):
         if st.session_state.url_input:
             # Extract title, key points, and summary from the URL
             title, st.session_state.key_points, st.session_state.summary = extract_flood_info_from_url(
@@ -266,31 +243,33 @@ elif option == "Flood Information Extractor":
                 keyword=st.session_state.keyword_input, 
                 max_paragraphs=max_paragraphs
             )
-            
-            # Display title and summary with modern header design
-            st.markdown(f"<h3>Page Title: {title}</h3>", unsafe_allow_html=True)
-            st.markdown("<h4>Summary of Flood Information:</h4>", unsafe_allow_html=True)
+
+            # Display title and summary
+            st.write(f"**Page Title:** {title}")
+            st.write("### Summary of Flood Information:")
             st.write(st.session_state.summary if st.session_state.summary else "No summary available.")
             
-            # Display key flood information with modern styling
-            st.markdown("<h4>Key Flood Information:</h4>", unsafe_allow_html=True)
+            # Display key flood information as bullet points
+            st.write("### Key Flood Information:")
             for i, point in enumerate(st.session_state.key_points, 1):
                 st.write(f"{i}. {point}")
 
-    # Input for user question with modern styling
-    st.markdown("<p>Ask a specific question about this page's content:</p>", unsafe_allow_html=True)
-    question_input = st.text_input("", st.session_state.question_input, placeholder="e.g., What is the flood risk in my area?", key="question_input")
-    if question_input != st.session_state.question_input:
-        st.session_state.question_input = question_input
-
-    # Button to generate an answer based on the question input with hover effect
-    if st.button("💬 Get Answer") and st.session_state.question_input:
+    # Input for user question
+    st.session_state.question_input = st.text_input(
+        "Ask a specific question about this page's content:", 
+        st.session_state.question_input,
+        label_visibility="hidden"
+    )
+    
+    # Button to generate an answer based on the question input
+    if st.button("Get Answer") and st.session_state.question_input:
         st.session_state.answer = answer_question_about_content(
             f"{st.session_state.summary} {' '.join(st.session_state.key_points)}", 
             st.session_state.question_input
         )
-        st.markdown("<h4>Answer:</h4>", unsafe_allow_html=True)
+        st.write("### Answer:")
         st.write(st.session_state.answer)
+
 
 
 
