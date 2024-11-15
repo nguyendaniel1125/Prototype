@@ -166,8 +166,8 @@ def analyze_flood_image(image_bytes):
 
 # Handle different options
 if option == "Main Page":
-    st.title("Flood Preparedness & Reporting System")
-    st.write("This tool provides resources to stay safe during floods and report flood incidents in your area.")
+    st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Flood Preparedness & Reporting System</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #555;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
 
 elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
