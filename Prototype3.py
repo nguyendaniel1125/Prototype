@@ -166,49 +166,33 @@ def analyze_flood_image(image_bytes):
 
 # Handle different options
 if option == "Main Page":
-    # Title of the page
-    st.markdown("""
-        <h1 style='text-align: center; color: #1f77b4; font-family: Arial, sans-serif;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>
-        <p style='text-align: center; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 18px;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>
-    """, unsafe_allow_html=True)
+    # Page title
+    st.markdown("<h1 style='text-align: center; color: #1f77b4;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
     
-    # Description of the features
-    st.markdown("""
-        <h2 style='color: #1f77b4; font-family: Arial, sans-serif; text-align: center;'>Explore the Key Features:</h2>
-    """, unsafe_allow_html=True)
+    # Description of features
+    st.markdown("<h2 style='color: #1f77b4;'>Explore the Key Features:</h2>", unsafe_allow_html=True)
     
-    # Cards for each feature
-    st.markdown("""
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; justify-items: center;">
-            <div style="background-color: #fff; color: #333; padding: 20px; width: 100%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
-                <h3 style="color: #1f77b4; font-weight: bold;">Flood Information Extractor</h3>
-                <p><b>Extract flood-related information</b> from websites. Enter a URL and an optional keyword to get summaries, key points, and ask questions about the content.</p>
-            </div>
-            
-            <div style="background-color: #fff; color: #333; padding: 20px; width: 100%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
-                <h3 style="color: #1f77b4; font-weight: bold;">Flood Risk Mapping</h3>
-                <p><b>Interactive flood map</b> showing flood-prone areas. Use this feature to identify areas with high risk and prepare accordingly.</p>
-            </div>
-            
-            <div style="background-color: #fff; color: #333; padding: 20px; width: 100%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
-                <h3 style="color: #1f77b4; font-weight: bold;">Flood Reporting</h3>
-                <p><b>Real-time flood reporting</b> allows you to report incidents as they happen. Provide details such as location and severity to assist authorities in responding quickly.</p>
-            </div>
-            
-            <div style="background-color: #fff; color: #333; padding: 20px; width: 100%; margin: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
-                <h3 style="color: #1f77b4; font-weight: bold;">Preparedness Checklist</h3>
-                <p><b>Comprehensive checklist</b> to ensure you're ready for a flood. This feature helps you track your supplies and plan your evacuation strategy.</p>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+    # Create columns for a modern layout
+    col1, col2, col3 = st.columns(3)
 
-    # Call to action (CTA)
-    st.markdown("""
-        <div style="text-align: center; margin-top: 40px;">
-            <p style="color: #FFFFFF; font-family: Arial, sans-serif; font-size: 18px;">Explore each feature to stay informed, prepared, and safe during flood emergencies. Click on a feature to get started!</p>
-        </div>
-    """, unsafe_allow_html=True)
+    with col1:
+        st.button("Flood Risk Mapping", key="flood_risk_mapping")
+        st.write("Interactive flood map showing flood-prone areas. Use this feature to identify areas with high risk and prepare accordingly.")
+        
+    with col2:
+        st.button("Flood Reporting", key="flood_reporting")
+        st.write("Real-time flood reporting allows you to report incidents as they happen. Provide details such as location and severity to assist authorities in responding quickly.")
+        
+    with col3:
+        st.button("Preparedness Checklist", key="preparedness_checklist")
+        st.write("Comprehensive checklist to ensure you're ready for a flood. This feature helps you track your supplies and plan your evacuation strategy.")
+    
+    # Add some spacing
+    st.markdown("<br>", unsafe_allow_html=True)
 
+    # Call to action message
+    st.markdown("<h3 style='text-align: center; color: #FFFFFF;'>Explore each feature to stay informed, prepared, and safe during flood emergencies. Click on a feature to get started!</h3>", unsafe_allow_html=True)
 
 
 
