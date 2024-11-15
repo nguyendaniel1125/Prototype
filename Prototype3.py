@@ -166,7 +166,7 @@ def analyze_flood_image(image_bytes):
 
 # Handle different options
 if option == "Main Page":
-    st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Flood Preparedness & Reporting System</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #1f77b4;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
 elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
@@ -188,11 +188,20 @@ elif option == "Flood Information Extractor":
     # Custom CSS for dark background with light text
     st.markdown("""
         <style>
+            /* Make all text bold and uppercase */
+            body, h1, h2, h3, h4, h5, h6, label, .stTextInput>div>div>input, .stButton>button, .stSlider>div>div {
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            /* Style labels above inputs */
             .stTextInput>label {
                 color: #1f77b4;
                 font-weight: bold;
                 margin-bottom: 5px;
             }
+            
+            /* Style input fields */
             .stTextInput>div>div>input {
                 background-color: #333;
                 color: white;
@@ -201,6 +210,8 @@ elif option == "Flood Information Extractor":
                 margin-bottom: 15px;
                 border-radius: 5px;
             }
+            
+            /* Style buttons */
             .stButton>button {
                 background-color: #1f77b4;
                 color: white;
@@ -209,39 +220,40 @@ elif option == "Flood Information Extractor":
                 padding: 10px;
                 margin-top: 10px;
             }
+            
+            /* Style sliders */
             .stSlider>div>div {
                 color: white;
                 margin-bottom: 10px;
             }
+
+            /* Style headers */
             h1, h2, h3, h4, h5, h6 {
                 color: white;
-            }
-            .stTextInput>label, .stSlider>div {
-                margin-bottom: 10px;
             }
         </style>
         """, unsafe_allow_html=True)
 
     # User inputs for URL, keyword, and maximum paragraphs to display
     st.text_input(
-        "Enter the URL of the flood-related website:", 
+        "ENTER THE URL OF THE FLOOD-RELATED WEBSITE:", 
         st.session_state.url_input, 
         key="url_input"
     )
     st.text_input(
-        "Optional: Specify a flood-related term:", 
+        "OPTIONAL: SPECIFY A FLOOD-RELATED TERM:", 
         st.session_state.keyword_input, 
         key="keyword_input"
     )
     
     max_paragraphs = st.slider(
-        "Number of key points to display:", 
+        "NUMBER OF KEY POINTS TO DISPLAY:", 
         1, 20, 5, 
-        help="Adjust to see more or fewer key points."
+        help="ADJUST TO SEE MORE OR FEWER KEY POINTS."
     )
 
     # Button to extract flood information
-    if st.button("Extract Flood Info"):
+    if st.button("EXTRACT FLOOD INFO"):
         if st.session_state.url_input:
             # Extract title, key points, and summary from the URL
             title, st.session_state.key_points, st.session_state.summary = extract_flood_info_from_url(
@@ -251,30 +263,31 @@ elif option == "Flood Information Extractor":
             )
 
             # Display title and summary
-            st.write(f"**Page Title:** {title}")
-            st.write("### Summary of Flood Information:")
-            st.write(st.session_state.summary if st.session_state.summary else "No summary available.")
+            st.write(f"**PAGE TITLE:** {title}")
+            st.write("### SUMMARY OF FLOOD INFORMATION:")
+            st.write(st.session_state.summary if st.session_state.summary else "NO SUMMARY AVAILABLE.")
             
             # Display key flood information as bullet points
-            st.write("### Key Flood Information:")
+            st.write("### KEY FLOOD INFORMATION:")
             for i, point in enumerate(st.session_state.key_points, 1):
                 st.write(f"{i}. {point}")
 
     # Input for user question
     st.text_input(
-        "Ask a specific question about this page's content:", 
+        "ASK A SPECIFIC QUESTION ABOUT THIS PAGE'S CONTENT:", 
         st.session_state.question_input,
         key="question_input"
     )
     
     # Button to generate an answer based on the question input
-    if st.button("Get Answer") and st.session_state.question_input:
+    if st.button("GET ANSWER") and st.session_state.question_input:
         st.session_state.answer = answer_question_about_content(
             f"{st.session_state.summary} {' '.join(st.session_state.key_points)}", 
             st.session_state.question_input
         )
-        st.write("### Answer:")
+        st.write("### ANSWER:")
         st.write(st.session_state.answer)
+
 
 
 
