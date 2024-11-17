@@ -180,4 +180,34 @@ elif option == "Flood Information Extractor":
             )
             st.write(f"**Page Title:** {title}")
             st.write("### Summary of Flood Information:")
-            st.write(st.session
+            st.write(st.session_state.summary)
+            st.write("### Key Points:")
+            for idx, point in enumerate(st.session_state.key_points):
+                st.write(f"{idx+1}. {point}")
+        else:
+            st.write("Please enter a URL.")
+
+    st.session_state.question_input = st.text_input("Ask a question about the flood info:", st.session_state.question_input)
+
+    if st.button("Get Answer"):
+        if st.session_state.question_input and st.session_state.summary:
+            st.session_state.answer = answer_question_about_content(st.session_state.summary, st.session_state.question_input)
+            st.write("### Answer:")
+            st.write(st.session_state.answer)
+        else:
+            st.write("Please provide a question and ensure the flood information is extracted.")
+
+elif option == "Flood Preparedness Advisor":
+    st.subheader("Flood Preparedness Advisor")
+    uploaded_file = st.file_uploader("Upload a flood preparedness PDF file:", type=["pdf"])
+    if uploaded_file is not None:
+        pdf_content = extract_text_from_pdf(uploaded_file)
+        if st.button("Generate Advice"):
+            zip_code = st.text_input("Enter your zip code:")
+            residence_type = st.selectbox("Select your residence type:", ["Apartment", "House", "Mobile Home", "Other"])
+            has_pets = st.checkbox("Do you have pets?")
+            wheelchair_accessibility = st.checkbox("Do you need wheelchair accessibility?")
+            health_risks = st.text_input("Specify any health risks:")
+            advice = get_preparedness_advice_from_pdf(pdf_content, zip_code, residence_type, has_pets, wheelchair_accessibility, health_risks)
+            st.write("### Preparedness Advice:")
+            st.write(advice)
