@@ -170,6 +170,17 @@ def get_preparedness_advice_from_pdf(pdf_content, zip_code, residence_type, has_
     except Exception as e:
         return f"Error generating advice: {str(e)}"
 
+def summarize_text(text, max_tokens=100):
+    try:
+        prompt = f"Summarize the following flood-related information:\n\n{text}"
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "system", "content": "You are a summarizer for flood-related content."},
+                      {"role": "user", "content": prompt}]
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        return f"Error generating summary: {str(e)}"
 
 # Main app flow
 
@@ -205,17 +216,60 @@ if option == "Main Page":
     st.markdown("<h3 style='text-align: center; color: '>Explore each feature to stay informed, prepared, and safe during flood emergencies! </h3>", unsafe_allow_html=True)
 
 elif option == "Flood Information Extractor":
+    elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
 
-    # Session state for URL input, keyword, etc.
-    st.session_state.url_input = st.text_input("Enter the URL of the flood-related website:", "")
-    st.session_state.keyword_input = st.text_input("Optional: Specify a flood-related term:", "")
+    # Initialize session state variables if they don’t exist
+    if 'url_input' not in st.session_state:
+        st.session_state.url_input = ''
+    if 'keyword_input' not in st.session_state:
+        st.session_state.keyword_input = ''
+    if 'summary' not in st.session_state:
+        st.session_state.summary = ''
+    if 'key_points' not in st.session_state:
+        st.session_state.key_points = []
+    if 'question_input' not in st.session_state:
+        st.session_state.question_input = ''
+    if 'answer' not in st.session_state:
+        st.session_state.answer = ''
+
+    # User inputs for URL, keyword, and maximum paragraphs to display
+    st.session_state.url_input = st.text_input("Enter the URL of the flood-related website:", st.session_state.url_input)
+    st.session_state.keyword_input = st.text_input("Optional: Specify a flood-related term:", st.session_state.keyword_input)
     max_paragraphs = st.slider("Number of key points to display:", 1, 20, 5)
 
     # Button to extract flood information
     if st.button("Extract Flood Info"):
-        # Call extraction and display results here (similar to original code)
-        pass
+        if st.session_state.url_input:
+            # Extract title, key points, and summary from the URL
+            title, st.session_state.key_points, st.session_state.summary = extract_flood_info_from_url(
+                st.session_state.url_input, 
+                keyword=st.session_state.keyword_input, 
+                max_paragraphs=max_paragraphs
+            )
+            
+            # Display title and summary
+            st.write(f"**Page Title:** {title}")
+            st.write("### Summary of Flood Information:")
+            st.write(st.session_state.summary if st.session_state.summary else "No summary available.")
+            
+            # Display key flood information as bullet points
+            st.write("### Key Flood Information:")
+            for i, point in enumerate(st.session_state.key_points, 1):
+                st.write(f"{i}. {point}")
+
+    # Input for user question
+    st.session_state.question_input = st.text_input("Ask a specific question about this page's content:", st.session_state.question_input)
+    
+    # Button to generate an answer based on the question input
+    if st.button("Get Answer") and st.session_state.question_input:
+        st.session_state.answer = answer_question_about_content(
+            f"{st.session_state.summary} {' '.join(st.session_state.key_points)}", 
+            st.session_state.question_input
+        )
+        st.write("### Answer:")
+        st.write(st.session_state.answer)
+
 
 elif option == "Flood Preparedness Advisor":
     st.subheader("Flood Preparedness Advisor")
