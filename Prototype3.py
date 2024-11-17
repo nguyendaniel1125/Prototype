@@ -273,4 +273,5 @@ elif option == "Flood Preparedness Advisor":
                 pdf_content, zip_code, residence_type, has_pets, wheelchair_accessibility, health_risks
             )
             st.write(response)
-     
+  elif option == "Community Flood Reporting Map":
+    st.subheader("Community Flood Reporting Map")   
