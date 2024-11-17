@@ -146,8 +146,23 @@ def geocode_address(address):
 
 if option == "Main Page":
     # Page title
+    st.markdown(
+    """
+    <style>
+    .centered-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+    <div class="centered-image">
+        <img src="Project Logo FloodGuard AI.png" width="300">
+    </div>
+    """, 
+    unsafe_allow_html=True
+)
     st.markdown("<h1 style='text-align: center;'>FLOODGUARD AI</h1>", unsafe_allow_html=True)
-    st.image("Project Logo FloodGuard AI.png", width=300) 
+
     st.markdown("<p style='text-align: center;'>This tool provides resources to stay safe during floods and report flood incidents in your area using the power of AI. </p>", unsafe_allow_html=True)
     
     # Description of features
