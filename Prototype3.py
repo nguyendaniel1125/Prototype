@@ -150,19 +150,6 @@ def get_preparedness_advice_from_pdf(pdf_content, zip_code, residence_type, has_
     except Exception as e:
         return f"Error generating advice: {str(e)}"
     
-# Function to analyze the flood image and identify the type of flood
-def analyze_flood_image(image_bytes):
-    try:
-        # OpenAI API call to analyze the image (assuming using OpenAI's GPT-4 Vision or similar model)
-        response = openai.Image.create(
-            file=image_bytes,
-            model="gpt-4-vision-preview"  # Use the correct model if different
-        )
-        # Assuming the API returns a description of the image
-        description = response['choices'][0]['text']
-        return description
-    except Exception as e:
-        return f"Error analyzing image: {str(e)}"
 
 # Handle different options
 if option == "Main Page":
@@ -287,38 +274,3 @@ elif option == "Flood Preparedness Advisor":
             )
             st.write(response)
      
-elif option == "Community Flood Reporting Map":
-    st.subheader("Community Flood Reporting Map")
-    if 'flood_data' not in st.session_state:
-        st.session_state.flood_data = fetch_flood_reports()
-    
-    # Sidebar form for reporting a flood incident
-    with st.sidebar.form("flood_form"):
-        street_address = st.text_input("Street Address")
-        flood_type = st.selectbox("Cause of Flood", ["Storm Drain Blockage", "Well/Reservoir Overflow", "Pipe Burst", "Debris", "Other"])
-        custom_flood_type = st.text_input("Specify cause of flooding") if flood_type == "Other" else flood_type
-        severity = st.slider("Flood Severity (1 = Minor, 5 = Severe)", 1, 5)
-        image = st.file_uploader("Upload a flood image", type=["jpg", "png", "jpeg"])
-        submitted = st.form_submit_button("Submit Report")
-
-        if submitted and street_address:
-            lat, lon = get_lat_lon(street_address)
-            if lat and lon:
-                flood_entry = {"lat": lat, "lon": lon, "type": custom_flood_type, "severity": severity, "address": street_address, "image": image.read() if image else None}
-                st.session_state.flood_data.append(flood_entry)
-                db.collection("flood_reports").add(flood_entry)
-                st.success(f"Flood report added at {street_address}.")
-
-    # Create and display map with flood data
-    df = pd.DataFrame(st.session_state.flood_data)
-    if not df.empty:
-        m = folium.Map(location=[df["lat"].mean(), df["lon"].mean()], zoom_start=12)
-        for _, row in df.iterrows():
-            folium.Marker(location=[row["lat"], row["lon"]], popup=f"Address: {row['address']}<br>Type: {row['type']}<br>Severity: {row['severity']}", icon=folium.Icon(color="red")).add_to(m)
-        st_folium(m, width=700, height=500)
-        st.write("### Reported Flood Incidents:")
-        for idx, row in df.iterrows():
-            st.write(f"**Location**: {row['address']}, **Type**: {row['type']}, **Severity**: {row['severity']}")
-            if row['image']:
-                image = Image.open(BytesIO(row['image']))
-                st.image(image, caption=f"Flood at {row['address']}", use_column_width=True)
