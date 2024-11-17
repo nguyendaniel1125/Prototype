@@ -182,6 +182,26 @@ def summarize_text(text, max_tokens=100):
     except Exception as e:
         return f"Error generating summary: {str(e)}"
 
+# Function to extract flood-related information from a URL
+def extract_flood_info_from_url(url, keyword=None, max_paragraphs=5):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        title = soup.title.string if soup.title else 'No title found'
+        paragraphs = [para.get_text().strip() for para in soup.find_all('p') if para.get_text().strip()]
+        
+        if keyword:
+            paragraphs = [para for para in paragraphs if keyword.lower() in para.lower()]
+        
+        content_text = " ".join(paragraphs[:max_paragraphs])
+        summary = summarize_text(content_text)  # Generate summary of the content
+
+        return title, paragraphs[:max_paragraphs], summary
+    except Exception as e:
+        return str(e), [], None
+
+
 # Main app flow
 
 if option == "Main Page":
