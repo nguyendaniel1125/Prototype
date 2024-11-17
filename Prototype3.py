@@ -146,8 +146,8 @@ def geocode_address(address):
 
 if option == "Main Page":
     # Page title
-    st.markdown("<h1 style='text-align: center; color: #1f77b4;'>FLOOD PREPAREDNESS & REPORTING SYSTEM</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #FFFFFF;'>This tool provides resources to stay safe during floods and report flood incidents in your area.</p>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>FLOODGUARD AI</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>This tool provides resources to stay safe during floods and report flood incidents in your area using the power of AI. </p>", unsafe_allow_html=True)
     
     # Description of features
     st.markdown("<h2 style='color: #1f77b4;'>Explore the Key Features:</h2>", unsafe_allow_html=True)
@@ -156,16 +156,16 @@ if option == "Main Page":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.button("Flood Risk Mapping", key="flood_risk_mapping")
-        st.write("Interactive flood map showing flood-prone areas. Use this feature to identify areas with high risk and prepare accordingly.")
+        st.button("Flood Information Extractor", key="Flood Information Extractor")
+        st.write("Extract information from a given website that provides flooding information.")
         
     with col2:
-        st.button("Flood Reporting", key="flood_reporting")
-        st.write("Real-time flood reporting allows you to report incidents as they happen. Provide details such as location and severity to assist authorities in responding quickly.")
+        st.button("Flood Preparedness Advisor", key="Flood Preparedness Advisor")
+        st.write("Personalized flooding preparedness information from Santa Clara Valley Water.")
         
     with col3:
         st.button("Preparedness Checklist", key="preparedness_checklist")
-        st.write("Comprehensive checklist to ensure you're ready for a flood. This feature helps you track your supplies and plan your evacuation strategy.")
+        st.write("Real-time flood reporting allows you to report incidents as they happen. Provide details such as location and severity to assist authorities in responding quickly.")
     
     # Add some spacing
     st.markdown("<br>", unsafe_allow_html=True)
