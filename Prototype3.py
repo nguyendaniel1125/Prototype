@@ -141,6 +141,17 @@ def geocode_address(address):
         return lat, lon
     return None, None
 
+# Function to extract text from PDF    
+def extract_text_from_pdf(pdf_path):
+    try:
+        pdf_reader = PdfReader(pdf_path)
+        text = ""
+        for page in range(len(pdf_reader.pages)):
+            text += pdf_reader.pages[page].extract_text()
+        return text
+    except Exception as e:
+        return f"Error reading the PDF: {str(e)}"
+
 
 # Main app flow
 
