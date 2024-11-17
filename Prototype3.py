@@ -213,7 +213,6 @@ elif option == "Community Flood Reporting Map":
     with st.spinner('Processing your report...'):
         # Simulate some delay (like API call or image upload)
         time.sleep(2)
-    st.success('Your flood report has been successfully added!')
     st.sidebar.header("Report a Flood")
     with st.sidebar.form("flood_form"):
         street_address = st.text_input("Street Address")
