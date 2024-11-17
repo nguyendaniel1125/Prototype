@@ -151,6 +151,24 @@ def extract_text_from_pdf(pdf_path):
         return text
     except Exception as e:
         return f"Error reading the PDF: {str(e)}"
+# Function to get preparedness advice from PDF content
+def get_preparedness_advice_from_pdf(pdf_content, zip_code, residence_type, has_pets, wheelchair_accessibility, health_risks):
+    try:
+        prompt = (
+            f"Using the following flood preparedness PDF content, provide advice:\n\n{pdf_content}\n\n"
+            f"Considerations: Zip code {zip_code}, residence type {residence_type}, "
+            f"pets: {'Yes' if has_pets else 'No'}, "
+            f"wheelchair accessibility: {'Yes' if wheelchair_accessibility else 'No'}, "
+            f"health risks: {health_risks}."
+        )
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "system", "content": "You are a flood preparedness advisor using PDF-based information."},
+                      {"role": "user", "content": prompt}]
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        return f"Error generating advice: {str(e)}"
 
 
 # Main app flow
