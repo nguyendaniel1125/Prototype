@@ -286,8 +286,7 @@ elif option == "Flood Preparedness Advisor":
                 pdf_content, zip_code, residence_type, has_pets, wheelchair_accessibility, health_risks
             )
             st.write(response)
-        else:
-            st.warning("Please check the path of the PDF file to ensure it's correct.")
+     
 elif option == "Community Flood Reporting Map":
     st.subheader("Community Flood Reporting Map")
     if 'flood_data' not in st.session_state:
