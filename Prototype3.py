@@ -188,7 +188,7 @@ if option == "Main Page":
     st.markdown("<p style='text-align: center;'>This tool provides resources to stay safe during floods and report flood incidents in your area using the power of AI. </p>", unsafe_allow_html=True)
     
     # Description of features
-    st.markdown("<h2 style='color: #1f77b4;'>Explore the Key Features:</h2>", unsafe_allow_html=True)
+    st.markdown("<h2>Explore the Key Features:</h2>", unsafe_allow_html=True)
     
     # Create columns for a modern layout
     col1, col2, col3 = st.columns(3)
