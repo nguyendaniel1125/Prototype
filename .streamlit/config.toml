@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#1E3A8A"  # Blue color for primary UI elements
+backgroundColor = "#F0F9FF"  # Light blue background for the page
+secondaryBackgroundColor = "#E1F5FE"  # Slightly darker background for the sidebar
+textColor = "#00008B"  # Dark blue text color for contrast
+font = "sans serif"  # Use a clean sans-serif font
