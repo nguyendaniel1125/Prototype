@@ -10,5 +10,4 @@ streamlit-folium
 pillow
 pypdf2
 csv
-time
 pydeck
