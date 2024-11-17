@@ -171,7 +171,7 @@ if option == "Main Page":
     st.markdown("<br>", unsafe_allow_html=True)
 
     # Call to action message
-    st.markdown("<h3 style='text-align: center; color: #FFFFFF;'>Explore each feature to stay informed, prepared, and safe during flood emergencies. Click on a feature to get started!</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: '>Explore each feature to stay informed, prepared, and safe during flood emergencies! </h3>", unsafe_allow_html=True)
 
 elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
