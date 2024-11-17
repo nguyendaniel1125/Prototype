@@ -1,0 +1,3 @@
+lat,lon,address,type,severity,image_path
+37.344139,-121.892231,"1 Washington Sq, San Jose, CA 95192",Pipe Burst,2,"flood_images/1_Washington_Sq,_San_Jose,_CA_95192_Pipe Burst.jpg"
+37.2387121,-121.8124538,"371 Henderson Drive, San Jose, CA, 95123",Pipe Burst,4,"flood_images/371_Henderson_Drive,_San_Jose,_CA,_95123_Pipe Burst.jpg"
