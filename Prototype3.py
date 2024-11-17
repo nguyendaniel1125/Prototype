@@ -177,7 +177,7 @@ if option == "Main Page":
     # Page title
     left_col, center_col, right_col = st.columns([1, 3, 1])  # Define the columns with names
     with center_col:
-        st.image("Project Logo FloodGuard AI.png", width=300)
+        st.image("Project Logo FloodGuard AI.png", width=400)
     st.markdown("<h1 style='text-align: center;'>FLOODGUARD AI</h1>", unsafe_allow_html=True)
 
     st.markdown("<p style='text-align: center;'>This tool provides resources to stay safe during floods and report flood incidents in your area using the power of AI. </p>", unsafe_allow_html=True)
