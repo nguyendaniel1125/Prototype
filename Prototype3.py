@@ -216,7 +216,6 @@ if option == "Main Page":
     st.markdown("<h3 style='text-align: center; color: '>Explore each feature to stay informed, prepared, and safe during flood emergencies! </h3>", unsafe_allow_html=True)
 
 elif option == "Flood Information Extractor":
-    elif option == "Flood Information Extractor":
     st.subheader("Flood Information Extractor")
 
     # Initialize session state variables if they don’t exist
