@@ -200,7 +200,18 @@ def extract_flood_info_from_url(url, keyword=None, max_paragraphs=5):
         return title, paragraphs[:max_paragraphs], summary
     except Exception as e:
         return str(e), [], None
-
+# Add a function to handle user questions about the page content
+def answer_question_about_content(content, question):
+    try:
+        prompt = f"Based on the following flood-related information, answer the question:\n\nContent: {content}\n\nQuestion: {question}"
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "system", "content": "You are a flood preparedness expert answering questions."},
+                      {"role": "user", "content": prompt}]
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        return f"Error answering question: {str(e)}"
 
 # Main app flow
 
