@@ -9,5 +9,4 @@ folium
 streamlit-folium
 pillow
 pypdf2
-csv
 pydeck
