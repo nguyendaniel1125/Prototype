@@ -325,8 +325,8 @@ elif option == "Community Flood Reporting Map":
                 st.write(f"Severity: {report['severity']}/5")
                 
                 # Display image if available
-                if report["image_path"]:
-                    st.image(report["image_path"], caption="Flood Image", use_container_width=True)
+                if not os.path.exists(report["image_path"]):
+                    st.error(f"Image not found at {report['image_path']}")
                 
                 st.write("----")
     
