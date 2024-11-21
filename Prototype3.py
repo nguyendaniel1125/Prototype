@@ -237,7 +237,7 @@ if option == "Main Page":
         st.write("Personalized flooding preparedness information from Santa Clara Valley Water.")
         
     with col3:
-        st.button("Preparedness Checklist", key="preparedness_checklist")
+        st.button("Community Flood Reporting Map", key="Community Flood Reporting Map")
         st.write("Real-time flood reporting allows you to report incidents as they happen. Provide details such as location and severity to assist authorities in responding quickly.")
     
     # Add some spacing
